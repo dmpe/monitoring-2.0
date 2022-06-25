@@ -35,21 +35,22 @@ sudo rm -rf ./nodes
 
 ./bin/generate-certs.sh
 sudo cp -R ./*.pem /etc/opensearch/
-sudo chmod 600 ./*.pem
+sudo chmod 600 /etc/opensearch/*.pem
 
+# not needed
 ./securityadmin.sh -cd ../securityconfig/ -icl -nhnv \
    -cacert /etc/opensearch/root-ca.pem \
    -cert /etc/opensearch/node1.pem \
    -key /etc/opensearch/node1-key.pem
 
-sudo systemctl start opensearch.service
 
 curl -XGET https://localhost:9200 -u 'admin:admin' --insecure
 curl -XGET https://localhost:9200/_cat/config?v -u 'admin:admin' --insecure
 
 
-sudo systemctl start opensearch-performance-analyzer.service
+sudo systemctl start opensearch.service
 sudo systemctl stop opensearch.service
+sudo systemctl start opensearch-performance-analyzer.service
 sudo systemctl stop opensearch-performance-analyzer.service
 ```
 
