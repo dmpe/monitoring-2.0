@@ -4,3 +4,8 @@
 
 
 <https://opensearch.org/docs/latest/opensearch/install/important-settings/>
+
+
+# OpenSearch-Dashboard
+
+Assumes Nginx, etc. proxy that Loadbalances OpenSearch Instance. Hence, disables TLS
