@@ -21,6 +21,27 @@ Data Nodes @ 2 Bare Metals:
 - >=500 GB local ssd disk
 
 
+## Use
+
+<https://opensearch.org/docs/latest/opensearch/install/rpm/>
+
+```
+sudo cp -R etc/yum.repos.d/*.repo /etc/yum.repos.d/
+sudo cp etc/opensearch/opensearch_cluster_mng1.yml /etc/opensearch/opensearch.yml
+sudo yum install opensearch
+sudo systemctl start opensearch.service
+
+curl -XGET https://localhost:9200 -u 'admin:admin' --insecure
+curl -XGET https://localhost:9200/_cat/config?v -u 'admin:admin' --insecure
+
+
+sudo systemctl start opensearch-dashboards.service
+sudo systemctl start opensearch-performance-analyzer.service
+sudo systemctl stop opensearch.service
+sudo systemctl stop opensearch-dashboards.service
+sudo systemctl stop opensearch-performance-analyzer.service
+```
+
 # OpenSearch-Dashboard
 
 Assumes Nginx, etc. proxy that Loadbalances OpenSearch Instance. Hence, disables TLS
@@ -30,3 +51,10 @@ Assumes Nginx, etc. proxy that Loadbalances OpenSearch Instance. Hence, disables
 - 4 CPU, 8 RAM, 20 GB Disk?
 
 Aka very little
+
+## Use
+
+
+```
+sudo yum install opensearch-dashboards
+```
