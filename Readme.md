@@ -35,7 +35,7 @@ sudo rm -rf ./nodes
 
 ./bin/generate-certs.sh
 sudo cp -R ./*.pem /etc/opensearch/
-sudo chmod 666 ./*.pem
+sudo chmod 600 ./*.pem
 
 ./securityadmin.sh -cd ../securityconfig/ -icl -nhnv \
    -cacert /etc/opensearch/root-ca.pem \
@@ -48,10 +48,8 @@ curl -XGET https://localhost:9200 -u 'admin:admin' --insecure
 curl -XGET https://localhost:9200/_cat/config?v -u 'admin:admin' --insecure
 
 
-sudo systemctl start opensearch-dashboards.service
 sudo systemctl start opensearch-performance-analyzer.service
 sudo systemctl stop opensearch.service
-sudo systemctl stop opensearch-dashboards.service
 sudo systemctl stop opensearch-performance-analyzer.service
 ```
 
@@ -70,4 +68,8 @@ Aka very little
 
 ```
 sudo yum install opensearch-dashboards
+sudo systemctl start opensearch-dashboards.service
+sudo systemctl stop opensearch-dashboards.service
+
+sudo cp etc/opensearch-dashboards/opensearch_dashboards.yml /etc/opensearch-dashboards/opensearch_dashboards.yml
 ```

@@ -21,7 +21,7 @@ cluster.name: opensearch-cluster
 # Use a descriptive name for the node:
 #
 node.name: opensearch-cluster_manager1
-node.roles: [ cluster_manager, data, ingest]
+node.roles: [ cluster_manager]
 #
 # Add custom attributes to the node:
 #
@@ -90,8 +90,6 @@ cluster.initial_cluster_manager_nodes: ["127.0.0.1"]
 #
 #action.destructive_requires_name: true
 
-# plugins.security.disabled: true
-
 plugins.security.ssl.transport.pemcert_filepath: node1.pem
 plugins.security.ssl.transport.pemkey_filepath: node1-key.pem
 plugins.security.ssl.transport.pemtrustedcas_filepath: root-ca.pem
@@ -104,6 +102,10 @@ plugins.security.allow_unsafe_democertificates: false
 plugins.security.allow_default_init_securityindex: true
 plugins.security.authcz.admin_dn:
   - "CN=localhost,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
+  - "CN=localhost2,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
+  - "CN=localhost3,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
+  - "CN=localhost4,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
+  - "CN=localhost5,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
 plugins.security.audit.type: internal_opensearch
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.check_snapshot_restore_write_privileges: true
