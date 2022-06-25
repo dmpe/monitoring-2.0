@@ -174,7 +174,7 @@ opensearch.ssl.verificationMode: 'none'
 # for your map rendering services.
 # map.showRegionBlockedWarning: false%
 
-opensearch.hosts: [https://localhost:9200]
+opensearch.hosts: ["https://localhost:9200"]
 opensearch.ssl.verificationMode: none
 opensearch.username: kibanaserver
 opensearch.password: kibanaserver

@@ -20,12 +20,13 @@ cluster.name: opensearch-cluster
 #
 # Use a descriptive name for the node:
 #
-node.name: opensearch-c1
-node.roles: [ ]
+node.name: opensearch-cluster_manager3
+node.roles: [ cluster_manager ]
 #
 # Add custom attributes to the node:
 #
-node.attr.rack: dc1
+node.attr.rack: rack1
+node.attr.zone: dc2
 #
 # ----------------------------------- Paths ------------------------------------
 #
@@ -66,7 +67,7 @@ http.port: 9200
 # Pass an initial list of hosts to perform discovery when this node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-#discovery.seed_hosts: ["host1", "host2"]
+discovery.seed_hosts: ["<private IP of opensearch-d1>", "<private IP of opensearch-d2>", "<private IP of opensearch-c1>"]
 #
 # Bootstrap the cluster using an initial set of cluster-manager-eligible nodes:
 #

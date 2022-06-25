@@ -20,7 +20,7 @@ cluster.name: opensearch-cluster
 #
 # Use a descriptive name for the node:
 #
-node.name: opensearch-d1
+node.name: opensearch-d2
 #
 # Add custom attributes to the node:
 #
