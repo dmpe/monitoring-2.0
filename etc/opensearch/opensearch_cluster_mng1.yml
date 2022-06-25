@@ -67,12 +67,12 @@ http.port: 9200
 # Pass an initial list of hosts to perform discovery when this node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+discovery.seed_hosts: ["127.0.0.1"]
 # ["<private IP of opensearch-d1>", "<private IP of opensearch-d2>", "<private IP of opensearch-c1>"]
 #
 # Bootstrap the cluster using an initial set of cluster-manager-eligible nodes:
 #
-cluster.initial_cluster_manager_nodes: [_local_, _site_]
+cluster.initial_cluster_manager_nodes: ["127.0.0.1"]
 #
 # For more information, consult the discovery and cluster formation module documentation.
 #
@@ -90,9 +90,8 @@ cluster.initial_cluster_manager_nodes: [_local_, _site_]
 #
 #action.destructive_requires_name: true
 
-######## Start OpenSearch Security Demo Configuration ########
-# WARNING: revise all the lines below before you go into production
 # plugins.security.disabled: true
+
 plugins.security.ssl.transport.pemcert_filepath: node1.pem
 plugins.security.ssl.transport.pemkey_filepath: node1-key.pem
 plugins.security.ssl.transport.pemtrustedcas_filepath: root-ca.pem
@@ -104,9 +103,7 @@ plugins.security.ssl.http.pemtrustedcas_filepath: root-ca.pem
 plugins.security.allow_unsafe_democertificates: false
 plugins.security.allow_default_init_securityindex: true
 plugins.security.authcz.admin_dn:
-  - "CN=node1.example.com,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
   - "CN=localhost,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
-
 plugins.security.audit.type: internal_opensearch
 plugins.security.enable_snapshot_restore_privilege: true
 plugins.security.check_snapshot_restore_write_privileges: true
@@ -114,4 +111,3 @@ plugins.security.restapi.roles_enabled: ["all_access", "security_rest_api_access
 plugins.security.system_indices.enabled: true
 plugins.security.system_indices.indices: [".plugins-ml-model", ".plugins-ml-task", ".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opensearch-notifications-*", ".opensearch-notebooks", ".opensearch-observability", ".opendistro-asynchronous-search-response*", ".replication-metadata-store"]
 node.max_local_storage_nodes: 3
-######## End OpenSearch Security Demo Configuration ########
