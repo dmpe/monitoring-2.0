@@ -29,6 +29,19 @@ Data Nodes @ 2 Bare Metals:
 sudo cp -R etc/yum.repos.d/*.repo /etc/yum.repos.d/
 sudo cp etc/opensearch/opensearch_cluster_mng1.yml /etc/opensearch/opensearch.yml
 sudo yum install opensearch
+
+cd /var/lib/opensearch
+sudo rm -rf ./nodes
+
+./bin/generate-certs.sh
+sudo cp -R ./*.pem /etc/opensearch/
+sudo chmod 666 ./*.pem
+
+./securityadmin.sh -cd ../securityconfig/ -icl -nhnv \
+   -cacert /etc/opensearch/root-ca.pem \
+   -cert /etc/opensearch/node1.pem \
+   -key /etc/opensearch/node1-key.pem
+
 sudo systemctl start opensearch.service
 
 curl -XGET https://localhost:9200 -u 'admin:admin' --insecure

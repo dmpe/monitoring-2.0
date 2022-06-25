@@ -21,12 +21,12 @@ cluster.name: opensearch-cluster
 # Use a descriptive name for the node:
 #
 node.name: opensearch-cluster_manager1
-node.roles: [ cluster_manager ]
+node.roles: [ cluster_manager, data, ingest]
 #
 # Add custom attributes to the node:
 #
-node.attr.rack: rack1
-node.attr.zone: dc2
+# node.attr.rack: rack1
+# node.attr.zone: dc2
 #
 # ----------------------------------- Paths ------------------------------------
 #
@@ -67,7 +67,8 @@ http.port: 9200
 # Pass an initial list of hosts to perform discovery when this node is started:
 # The default list of hosts is ["127.0.0.1", "[::1]"]
 #
-# discovery.seed_hosts: ["<private IP of opensearch-d1>", "<private IP of opensearch-d2>", "<private IP of opensearch-c1>"]
+discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+# ["<private IP of opensearch-d1>", "<private IP of opensearch-d2>", "<private IP of opensearch-c1>"]
 #
 # Bootstrap the cluster using an initial set of cluster-manager-eligible nodes:
 #
@@ -91,25 +92,26 @@ http.port: 9200
 
 ######## Start OpenSearch Security Demo Configuration ########
 # WARNING: revise all the lines below before you go into production
-plugins.security.disabled: true
-# plugins.security.ssl.transport.pemcert_filepath: esnode.pem
-# plugins.security.ssl.transport.pemkey_filepath: esnode-key.pem
-# plugins.security.ssl.transport.pemtrustedcas_filepath: root-ca.pem
-# plugins.security.ssl.transport.enforce_hostname_verification: false
-# plugins.security.ssl.http.enabled: true
-# plugins.security.ssl.http.pemcert_filepath: esnode.pem
-# plugins.security.ssl.http.pemkey_filepath: esnode-key.pem
-# plugins.security.ssl.http.pemtrustedcas_filepath: root-ca.pem
-# plugins.security.allow_unsafe_democertificates: true
-# plugins.security.allow_default_init_securityindex: true
-# plugins.security.authcz.admin_dn:
-#   - CN=kirk,OU=client,O=client,L=test, C=de
+# plugins.security.disabled: true
+plugins.security.ssl.transport.pemcert_filepath: node1.pem
+plugins.security.ssl.transport.pemkey_filepath: node1-key.pem
+plugins.security.ssl.transport.pemtrustedcas_filepath: root-ca.pem
+plugins.security.ssl.transport.enforce_hostname_verification: false
+plugins.security.ssl.http.enabled: true
+plugins.security.ssl.http.pemcert_filepath: node1.pem
+plugins.security.ssl.http.pemkey_filepath: node1-key.pem
+plugins.security.ssl.http.pemtrustedcas_filepath: root-ca.pem
+plugins.security.allow_unsafe_democertificates: false
+plugins.security.allow_default_init_securityindex: true
+plugins.security.authcz.admin_dn:
+  - "CN=node1.example.com,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
+  - "CN=localhost,OU=UNIT,O=ORG,L=TORONTO,ST=ONTARIO,C=CA"
 
-# plugins.security.audit.type: internal_opensearch
-# plugins.security.enable_snapshot_restore_privilege: true
-# plugins.security.check_snapshot_restore_write_privileges: true
-# plugins.security.restapi.roles_enabled: ["all_access", "security_rest_api_access"]
-# plugins.security.system_indices.enabled: true
-# plugins.security.system_indices.indices: [".plugins-ml-model", ".plugins-ml-task", ".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opensearch-notifications-*", ".opensearch-notebooks", ".opensearch-observability", ".opendistro-asynchronous-search-response*", ".replication-metadata-store"]
-# node.max_local_storage_nodes: 3
+plugins.security.audit.type: internal_opensearch
+plugins.security.enable_snapshot_restore_privilege: true
+plugins.security.check_snapshot_restore_write_privileges: true
+plugins.security.restapi.roles_enabled: ["all_access", "security_rest_api_access"]
+plugins.security.system_indices.enabled: true
+plugins.security.system_indices.indices: [".plugins-ml-model", ".plugins-ml-task", ".opendistro-alerting-config", ".opendistro-alerting-alert*", ".opendistro-anomaly-results*", ".opendistro-anomaly-detector*", ".opendistro-anomaly-checkpoints", ".opendistro-anomaly-detection-state", ".opendistro-reports-*", ".opensearch-notifications-*", ".opensearch-notebooks", ".opensearch-observability", ".opendistro-asynchronous-search-response*", ".replication-metadata-store"]
+node.max_local_storage_nodes: 3
 ######## End OpenSearch Security Demo Configuration ########
