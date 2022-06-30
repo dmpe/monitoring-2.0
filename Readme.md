@@ -74,3 +74,10 @@ sudo systemctl stop opensearch-dashboards.service
 
 sudo cp etc/opensearch-dashboards/opensearch_dashboards.yml /etc/opensearch-dashboards/opensearch_dashboards.yml
 ```
+
+
+## Prometheus
+
+```
+./bin/prom.sh
+```
