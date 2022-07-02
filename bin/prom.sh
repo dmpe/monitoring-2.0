@@ -22,6 +22,12 @@ sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml 
 
 
-cp etc/systemd/user/prometheus.service /etc/systemd/user/prometheus.service
+cp etc/systemd/system/prometheus.service /etc/systemd/system/prometheus.service
 sudo systemctl daemon-reload
 # sudo systemctl start prometheus
+
+# Alertmanager
+
+sudo mkdir -p /etc/alertmanager
+sudo cp etc/alertmanager/alertmanager.yml /etc/alertmanager/alertmanager.yml
+sudo cp etc/systemd/system/prometheus.service /etc/systemd/system/prometheus.service
