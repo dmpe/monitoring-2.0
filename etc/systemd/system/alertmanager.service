@@ -4,11 +4,14 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-User=prometheus
-Group=prometheus
+User=jm
+Group=jm
 Type=simple
 ExecStart=/usr/local/bin/alertmanager \
---config.file /etc/alertmanager/alertmanager.yml 
+--config.file /etc/alertmanager/alertmanager.yml \
+--storage.path="/home/jm/Downloads/" \
+--web.external-url="http://127.0.0.1" \
+--web.listen-address=":9093"
 
 [Install]
 WantedBy=multi-user.target

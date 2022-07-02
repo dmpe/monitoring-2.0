@@ -30,4 +30,10 @@ sudo systemctl daemon-reload
 
 sudo mkdir -p /etc/alertmanager
 sudo cp etc/alertmanager/alertmanager.yml /etc/alertmanager/alertmanager.yml
-sudo cp etc/systemd/system/prometheus.service /etc/systemd/system/prometheus.service
+sudo cp etc/systemd/system/alertmanager.service /etc/systemd/system/alertmanager.service
+sudo mkdir -p /etc/alertmanager
+sudo systemctl daemon-reload
+
+# Alertmanager
+sudo cp etc/systemd/system/pushgateway.service /etc/systemd/system/pushgateway.service
+sudo systemctl daemon-reload
